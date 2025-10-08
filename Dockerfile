@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir numpy pandas scipy scikit-learn matplotlib seaborn jupyter
 
 # Espone porta SSH
-EXPOSE 2222
+EXPOSE 22
 
 # Avvio SSH e setup chiave pubblica letta da variabile d'ambiente
 CMD sh -c 'echo "$PUBLIC_KEY" > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && /usr/sbin/sshd -D'
