@@ -9,13 +9,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Creazione cartella per SSH
-RUN mkdir /var/run/sshd
-RUN mkdir -p /root/.ssh && chmod 700 /root/.ssh
-
-RUN echo "$PUBLIC_KEY" > /root/.ssh/authorized_keys \
-    && chmod 600 /root/.ssh/authorized_keys \
-    && chown root:root /root/.ssh/authorized_keys
+# Creazione cartelle necessarie
+RUN mkdir -p /var/run/sshd /root/.ssh && chmod 700 /root/.ssh
 
 # Permetti login root via SSH
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -28,4 +23,6 @@ RUN pip install --no-cache-dir numpy pandas scipy scikit-learn matplotlib seabor
 # Espone porta SSH
 EXPOSE 2222
 
-CMD ["/usr/sbin/sshd", "-D"]
+# Avvio SSH e setup chiave pubblica letta da variabile d'ambiente
+CMD sh -c 'echo "$PUBLIC_KEY" > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && /usr/sbin/sshd -D'
+
