@@ -44,10 +44,8 @@ fi && \
 \
 TARGET_USER="${USER_NAME:-root}" && \
 if [ -n "$PUBLIC_KEY" ]; then \
-  mkdir -p /home/$TARGET_USER/.ssh && \
-  echo "$PUBLIC_KEY" > /home/$TARGET_USER/.ssh/authorized_keys && \
-  chown -R $TARGET_USER:$TARGET_USER /home/$TARGET_USER/.ssh && \
-  chmod 700 /home/$TARGET_USER/.ssh && chmod 600 /home/$TARGET_USER/.ssh/authorized_keys; \
+  echo "$PUBLIC_KEY" > /root/.ssh/authorized_keys && \
+  chmod 600 /root/.ssh/authorized_keys \
 fi && \
 \
 /usr/sbin/sshd -D -e \
