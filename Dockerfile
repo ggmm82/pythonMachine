@@ -28,7 +28,7 @@ EXPOSE 22
 
 # Avvio: crea utente se fornito, imposta password, autorizza chiave pubblica, configura sshd e avvia
 CMD sh -c '\
-SSH_PORT="${SSH_PORT:=2222}" && \
+SSH_PORT="${SSH_PORT:=22}" && \
 echo "Starting container - SSH internal port: $SSH_PORT" && \
 sed -i "s/^#Port .*/Port $SSH_PORT/" /etc/ssh/sshd_config || echo "Port $SSH_PORT" >> /etc/ssh/sshd_config && \
 sed -i "s/^#PasswordAuthentication .*/PasswordAuthentication yes/" /etc/ssh/sshd_config || true && \
