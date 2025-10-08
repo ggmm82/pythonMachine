@@ -27,4 +27,4 @@ EXPOSE 22
 #CMD sh -c 'echo "$PUBLIC_KEY" > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys && /usr/sbin/sshd -D'
 
 # Avvio: crea utente se fornito, imposta password, autorizza chiave pubblica, configura sshd e avvia
-CMD ["/docker-entrypoint.sh"]
+CMD ["docker-entrypoint.sh"]
