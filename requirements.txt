@@ -32,7 +32,6 @@ scipy
 seaborn
 setuptools-scm
 six
-sklearn
 tenacity
 threadpoolctl
 tomli
