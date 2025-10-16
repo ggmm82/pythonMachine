@@ -18,7 +18,7 @@ RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd
 
 # Installazione librerie Python
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir numpy pandas scipy scikit-learn matplotlib seaborn jupyter
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Espone porta SSH
 EXPOSE 22
